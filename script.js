@@ -4,23 +4,42 @@ const searchEl = document.getElementById('search');
 const pEl = document.getElementById('log');
 const apiKey = 'c715646b312c3dbc0c7e222279cd0de4';
 const units = 'imperial';
+const weatherObj = {
+	name: '',
+	feelsLike: '',
+	temp: '',
+	tempHigh: '',
+	tempLow: '',
+	conditions: '',
+};
+let weatherData = {};
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
 	weatherCall();
 });
 
-// searchEl.addEventListener('keyup', gifSearch);
-// console.log(searchEl.value);
-
 async function weatherCall() {
 	const weatherResponse = await fetch(
 		`https://api.openweathermap.org/data/2.5/weather?q=${searchEl.value}&units=${units}&APPID=${apiKey}`,
 		{ mode: 'cors' }
 	);
-	const weatherData = await weatherResponse.json();
-	console.log(weatherData);
+	weatherData = await weatherResponse.json();
+	weatherObj.temp = parseInt(weatherData.main.temp);
+	weatherObj.name = weatherData.name;
+	weatherObj.feelsLike = parseInt(weatherData.main.feels_like);
+	weatherObj.tempHigh = parseInt(weatherData.main.temp_max);
+	weatherObj.tempLow = parseInt(weatherData.main.temp_min);
+	weatherObj.conditions = weatherData.weather[0].main;
+
+	pEl.innerHTML = `The current temperature for ${weatherData.name} is ${weatherObj.temp}&#176`;
+	console.log(weatherObj);
 }
+
+weatherCall();
+
+// searchEl.addEventListener('keyup', gifSearch);
+// console.log(searchEl.value);
 
 // function gifSearch() {
 // 	if (!searchEl.value) {
