@@ -32,8 +32,25 @@ async function weatherCall() {
 	weatherObj.tempLow = parseInt(weatherData.main.temp_min);
 	weatherObj.conditions = weatherData.weather[0].main;
 
-	pEl.innerHTML = `The current temperature for ${weatherData.name} is ${weatherObj.temp}&#176`;
+	// pEl.innerHTML = `The current temperature for ${weatherData.name} is ${weatherObj.temp}&#176`;
 	console.log(weatherObj);
+	displayWeather();
+}
+
+function displayWeather() {
+	const pName = document.getElementById('city-name');
+	const pTemp = document.getElementById('feels-like-temp');
+	const h3Conditions = document.getElementById('current-conditions');
+	const h3CurrentTemp = document.getElementById('current-temp');
+	const h3High = document.getElementById('high-temp');
+	const h3Low = document.getElementById('low-temp');
+
+	pName.innerHTML = `${weatherObj.name}`;
+	pTemp.innerHTML = `${weatherObj.feelsLike}`;
+	h3Conditions.innerHTML = `${weatherObj.conditions}`;
+	h3CurrentTemp.innerHTML = `${weatherObj.temp}`;
+	h3High.innerHTML = `${weatherObj.tempHigh}`;
+	h3Low.innerHTML = `${weatherObj.tempLow}`;
 }
 
 weatherCall();
