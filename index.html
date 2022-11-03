@@ -6,22 +6,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form action="submit">
-    <input type="text" name="search" id="search" value="el dorado springs">
-    <button type="submit">Search</button>
-  </form>
- 
-  <p id="log"></p>
-
-  <div>
-    <h1 id="heading">Current Weather Conditions For</h1>
-    <p id="city-name"></p>
-    <h2 id="feels-like">Feels like:</h2>
-    <p id="feels-like-temp"></p>
-    <h3 id="current-conditions"></h3>
-    <h3 id="current-temp"></h3>
-    <h3 id="high-temp"></h3>
-    <h3 id="low-temp"></h3>
+  <div id="search-container">
+    <form action="submit">
+      <label for="search">City: </label>
+      <input type="text" name="search" id="search" value="el dorado springs">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  
+  <div id="weather-container">
+    <div id="heading-div">
+      <h1 id="heading">Current Weather Conditions For</h1>
+      <p id="city-name"></p>
+    </div>
+    <div id="feels-like-div">
+      <h2 id="feels-like">Feels like:</h2>
+      <p id="feels-like-temp"></p>
+     </div>
+    <div id="conditions-div">
+      <h3 id="current-conditions">Current Conditions: </h3>
+      <img id="conditions-icon" src="" alt="">
+    </div>
+    <div id="details-div">
+      <h3 id="current-temp" class="details"></h3>
+      <h3 id="high-temp" class="details"></h3>
+      <h3 id="low-temp" class="details"></h3>
+    </div>
+    <div id="toggle">
+      <p>Fahrenheit or Celsius?</p>
+      <label class="switch">
+        <input id="temp-toggle" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+    </div>
 
   </div>
   <script src="script.js"></script>
